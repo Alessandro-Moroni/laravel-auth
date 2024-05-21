@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1>home pubblica</h1>
+<h1>home pubblica guest</h1>
 
 @endsection
