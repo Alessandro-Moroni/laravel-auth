@@ -6,7 +6,7 @@
 
 .aside-bar{
     width: 200px;
-    height: 100vh;
+    height: calc(100vh - 60px);
     background-color: rgb(125, 125, 207);
 
     ul{
@@ -33,4 +33,15 @@
     input{
         border: none;
     }
+}
+
+.projects{
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: yellow;
+    overflow-y: scroll;
+}
+
+.table-projects{
+    width: 60%;
 }

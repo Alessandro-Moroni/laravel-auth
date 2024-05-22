@@ -66,16 +66,36 @@ class ProjecstController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:3|max:30'
+        ],
+        [
+            'title.required' => 'Title is obbligatory',
+            'title.min' => 'Title must have at least 3 letters',
+            'title.max' => 'Title must have a maximum of 30 letters',
+        ]);
+
+        $exists = Project::where('title', $request->title)->first();
+        if($exists){
+            return redirect()->route('admin.projects.index')->with('error', 'Project exist');
+
+        }else{
+            $data['slug'] = Help::generateSlug($request->title, Project::class);
+            $project->update($data);
+
+            return redirect()->route('admin.projects.index')->with('success', 'Project modificated');
+
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', 'Project deleted');
     }
 }
