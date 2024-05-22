@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Technology;
 
 class TecnologiesController extends Controller
 {
@@ -12,7 +13,8 @@ class TecnologiesController extends Controller
      */
     public function index()
     {
-        //
+        $tecnologies = Technology::all();
+        return view('admin.tecnologies.index', compact('tecnologies'));
     }
 
     /**

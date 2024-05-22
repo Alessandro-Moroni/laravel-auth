@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Functions\Helper as Help;
+
 
 class ProjecstController extends Controller
 {
@@ -12,7 +15,8 @@ class ProjecstController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -28,7 +32,19 @@ class ProjecstController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exists = Project::where('title', $request->title)->first();
+        if($exists){
+            return redirect()->route('admin.projects.index')->with('error', 'Project exist');
+
+        }else{
+            $new = new Project();
+            $new->title = $request->title;
+            $new->slug = Help::generateSlug($new->title, Project::class);
+            $new->save();
+
+            return redirect()->route('admin.projects.index')->with('success', 'Project added');
+
+        }
     }
 
     /**
