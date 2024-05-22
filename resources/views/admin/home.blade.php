@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container my-3">
+<div class="container">
 
     <h1>Home Admin</h1>
 </div>

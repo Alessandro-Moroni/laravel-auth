@@ -4,6 +4,9 @@ use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjecstController;
+use App\Http\Controllers\Admin\TecnologiesController;
+use App\Http\Controllers\Admin\TypesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,10 @@ Route::middleware(['auth', 'verified'])
                 ->group(function(){
                     // quin vengono inserite le rotte da auth da proteggere
                     Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+                    Route::resource('projects', ProjecstController::class);
+                    Route::resource('tecnologies', TecnologiesController::class);
+                    Route::resource('types', TypesController::class);
                 });
 
 Route::middleware('auth')->group(function () {

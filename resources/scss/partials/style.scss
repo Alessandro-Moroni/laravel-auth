@@ -1,0 +1,26 @@
+.header-admin{
+    height: 60px;
+    background-color: blue;
+
+}
+
+.aside-bar{
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(125, 125, 207);
+
+    ul{
+        padding-left: 10px;
+
+        li{
+            list-style: none;
+            margin-bottom: 20px;
+
+            a{
+                color: white;
+            }
+        }
+    }
+
+
+}
